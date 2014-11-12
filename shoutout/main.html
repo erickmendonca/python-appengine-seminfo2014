@@ -1,0 +1,26 @@
+<h1>Shoutout</h1>
+<h4>
+{% if message %}
+	{{message}}
+{% else %}
+	Anonymous
+{% endif %}
+</h4>
+
+{% for shout in shouts %}
+<div>
+{{shout.message}}
+from
+{% ifequal shout.who None %}
+	Anonymous
+{% else %}
+	{{shout.who}}
+{% endifequal %}
+</div>
+{% endfor %}
+
+<form action="" method="post" accept-charset="utf-8">
+	<p>From: <input type="text" name="who" value="{{message}}" id="who"></p>
+	<p>Message: <input type="text" name="message" value="" id="message"></p>
+	<p><input type="submit" value="Shout!"></p>
+</form>

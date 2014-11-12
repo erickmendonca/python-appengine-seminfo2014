@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+
+{% block maincontent %}
+
+<h1>Shoutout</h1>
+<h4>
+{% if message %}
+	{{message}}
+{% else %}
+	Anonymous
+{% endif %}
+</h4>
+
+<div class="row clearfix">
+      
+    <div class="col-md-6 column">
+      <!-- Form Name -->
+      <legend>Nova mensagem</legend>
+        <form role="form" action="" method="post" accept-charset="utf-8">
+        <div class="form-group">
+          <label for="who">De:</label>
+          <input id="who" name="who"  type="text" placeholder="Digite o nome" class="form-control" required="">
+          <p class="help-block">Remetente</p>
+        </div>
+        <div class="form-group">
+          <label for="message">Mensagem:</label>
+          <input id="message" name="message" type="text" placeholder="Digite a mensagem" class="form-control" required="">
+          <p class="help-block">Mensagem</p>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg btn-block">Enviar</button>
+        </form>
+    </div>
+
+    <div class="col-md-6 column">
+    	{% for shout in shouts %}
+		<p>
+		{{shout.message}}
+		from
+		{% ifequal shout.who None %}
+			Anonymous
+		{% else %}
+			{{shout.who}}
+		{% endifequal %}
+		</p>
+		{% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
